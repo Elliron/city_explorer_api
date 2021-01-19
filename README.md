@@ -19,6 +19,7 @@
 
 - Kristian Esvelt
 - Lauren Sierra
+- Bade
 
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
@@ -46,5 +47,11 @@ Estimate of time needed to complete: 45 minutes
 Start time: 9:25 pm
 Finish time: 9:40 pm
 Actual time needed to complete: 15 minutes
+
+Number and name of feature: 5, 
+Estimate of time needed to complete: 30 minutes
+Start time: 3:30
+Finish time: 3:57
+Actual time needed to complete: 27 minutes
 
 
