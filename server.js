@@ -45,6 +45,23 @@ app.get('/location', (req, res) => {
 
   res.send(newLocation);
 });
+
+app.get('/weather', (req, res) => {
+  const theDataArrayFromTheWeatherJson = require('./data/weather.json');
+  const theDataObjFromWeatherJson = theDataArrayFromTheWeatherJson.data;
+  const allWeather = [];
+
+  // const searchedWeather = req.query.weather;
+  console.log(theDataObjFromWeatherJson);
+  // searchedWeather,
+  theDataObjFromWeatherJson.forEach(jsonObj => {
+    console.log(jsonObj.weather);
+    const weather = new Weather(jsonObj.weather.description, jsonObj.datetime);
+    allWeather.push(weather);
+  });
+  console.log(allWeather);
+  res.send(allWeather);
+});
 // start the server
 app.listen(PORT, () => console.log(`we are up on PORT ${PORT}`));
 
@@ -58,3 +75,7 @@ function Location(search_query, formatted_query, latitude, longitude) {
   this.latitude = latitude;
 }
 
+function Weather(forecast, time) {
+  this.forecast = forecast;
+  this.time = time;
+}

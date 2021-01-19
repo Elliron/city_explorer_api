@@ -17,6 +17,8 @@
 
 ## Credits and Collaborations
 
+Kristian Esvelt
+
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 Number and name of feature: 1, Repository Set Up
@@ -35,16 +37,16 @@ Estimate of time needed to complete: 30 minutes
 
 Start time: 6:10 pm
 
-Finish time: _____
+Finish time: 7:10 pm
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hours
 
-Number and name of feature: ________________________________
+Number and name of feature: 3, Weather
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 45 minutes
 
-Start time: _____
+Start time: 7:15
 
-Finish time: _____
+Finish time: 8:15
 
-Actual time needed to complete: _____
+Actual time needed to complete: 1 hour
