@@ -27,7 +27,14 @@ const PORT = process.env.PORT || 3001;
 //   res.send('about to pet the pet');
 // });
 
+
+
 app.get('/location', (req, res) => {
+  if (req.query.city === '') {
+    res.status(500).send('Sorry, something went wrong');
+    return;
+  }
+
   const theDataArrayFromTheLocationJson = require('./data/location.json');
   const theDataObjFromJson = theDataArrayFromTheLocationJson[0];
 

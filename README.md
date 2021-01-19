@@ -50,3 +50,17 @@ Start time: 7:15
 Finish time: 8:15
 
 Actual time needed to complete: 1 hour
+
+Actual time needed to complete: 1 hours
+
+Number and name of feature: 4, Errors
+
+Estimate of time needed to complete: 45 minutes
+
+Start time: 9:25 pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
+
