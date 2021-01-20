@@ -21,6 +21,7 @@
 - Lauren Sierra
 - Bade
 - Chance Harmon
+- Ron Durphy
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ### Number and name of feature: 1, Repository Set Up

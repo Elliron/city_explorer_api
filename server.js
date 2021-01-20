@@ -52,16 +52,35 @@ app.get('/weather', (req, res) => {
   const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchedCity}&key=${key}`;
   superagent.get(url)
     .then(result => {
-      console.log(result.body);
+      // console.log(result.body.data);
       const theDataObjFromWeatherJson = result.body.data;
       // console.log(theDataObjFromWeatherJson);
       const allWeather = theDataObjFromWeatherJson.map((val) => {
         return new Weather(val.weather.description, val.datetime);
 
       });
-      console.log('I am a note', allWeather);
+      // console.log('I am a note', allWeather);
       res.send(allWeather);
     });
+});
+
+app.get('/trail', (req, res) => {
+  const key = process.env.TRAIL_API_KEY;
+  const searchedCity = req.query.search_query;
+  console.log('city', req);
+  const url = `https://developer.nps.gov/api/v1/parks?parkCode=${searchedCity}&api_key=${key}`;
+  superagent.get(url)
+    .then(result => {
+      console.log('yay', result.body.data);
+      // const theDataObjFromTrailJson = result.body[0];
+      // console.log(theDataObjFromWeatherJson);
+      // const allTrail = theDataObjFromTrailJson.map((val) => {
+      //   return new Trail(val.name, val.datetime);
+
+    });
+  // console.log('I am a note', allWeather);
+  // res.send(allTrail);
+  // });
 });
 // const theDataArrayFromTheWeatherJson = require('./data/weather.json');
 // const theDataObjFromWeatherJson = theDataArrayFromTheWeatherJson.data;
@@ -88,3 +107,9 @@ function Weather(forecast, time) {
   this.forecast = forecast;
   this.time = time;
 }
+
+// function Trail(name, location, trail_url) {
+//   this.name = name;
+//   this.location = location;
+//   this.trail_url = trail_url;
+// }
