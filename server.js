@@ -26,7 +26,7 @@ app.get('/location', (req, res) => {
   const key = process.env.GEOCODE_API_KEY;
   // const theDataArrayFromTheLocationJson = require('./data/location.json');
   // const theDataObjFromJson = theDataArrayFromTheLocationJson[0];
-  console.log('req.query', req.query);
+  // console.log('req.query', req.query);
   const url = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${searchedCity}&format=json`;
   superagent.get(url)
     .then(result => {
@@ -47,18 +47,29 @@ app.get('/location', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
-  const theDataArrayFromTheWeatherJson = require('./data/weather.json');
-  const theDataObjFromWeatherJson = theDataArrayFromTheWeatherJson.data;
-  // const allWeather = [];
-  // console.log(theDataObjFromWeatherJson);
-  const allWeather = theDataObjFromWeatherJson.map((val) => {
-    return new Weather(val.weather.description, val.datetime);
-    // const weather = new Weather(jsonObj.weather.description, jsonObj.datetime);
-    // allWeather.push(weather);
-  });
-  // console.log(allWeather);
-  res.send(allWeather);
+  const key = process.env.WEATHER_API_KEY;
+  const searchedCity = req.query.search_query;
+  const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchedCity}&key=${key}`;
+  superagent.get(url)
+    .then(result => {
+      console.log(result.body);
+      const theDataObjFromWeatherJson = result.body.data;
+      // console.log(theDataObjFromWeatherJson);
+      const allWeather = theDataObjFromWeatherJson.map((val) => {
+        return new Weather(val.weather.description, val.datetime);
+
+      });
+      console.log('I am a note', allWeather);
+      res.send(allWeather);
+    });
 });
+// const theDataArrayFromTheWeatherJson = require('./data/weather.json');
+// const theDataObjFromWeatherJson = theDataArrayFromTheWeatherJson.data;
+// const allWeather = [];
+// console.log(theDataObjFromWeatherJson);
+// const weather = new Weather(jsonObj.weather.description, jsonObj.datetime);
+// allWeather.push(weather);
+// console.log(allWeather);
 
 // ===== start the server =====//
 

@@ -59,11 +59,11 @@
 -  Start time: 4:45
 -  Finish time: 5:20
 -  Actual time needed to complete: 35 minutes
-## Number and name of feature: 7
--  Estimate of time needed to complete: 
--  Start time: 
--  Finish time: 
--  Actual time needed to complete: 
+## Number and name of feature: 8, Weather API
+-  Estimate of time needed to complete: 30 minutes
+-  Start time: 5:20
+-  Finish time: 6:07
+-  Actual time needed to complete: 47 minutes
 ## Number and name of feature: 8
 -  Estimate of time needed to complete: 
 -  Start time: 
