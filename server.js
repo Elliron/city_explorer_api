@@ -27,12 +27,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/location', (req, res) => {
-  // const sqlQuery = "SELECT * FROM location";
-  // client.query(sqlQuery)
-  //   .then(result => {
-  //     console.log(result.Potato.rows);
-  //     res.send(result.Potato.rows);
-  //   });
+  const sqlQuery = "SELECT * FROM location";
+  client.query(sqlQuery)
+    .then(result => {
+      console.log(result.Potato.rows);
+      res.send(result.Potato.rows);
+    });
 
 
   if (req.query.city === '') {
