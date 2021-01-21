@@ -1,8 +1,9 @@
 'use strict';
 // ===== packages =====//
+
 const express = require('express');
 const cors = require('cors');
-const { response } = require('express');
+// const { response } = require('express');
 require('dotenv').config();
 const superagent = require('superagent');
 
@@ -17,6 +18,10 @@ const PORT = process.env.PORT || 3001;
 
 // ===== Routes =====//
 
+app.get('/', (req, res) => {
+  res.send('It/s alive, ALLLLIIIIVVVEEEE');
+});
+
 app.get('/location', (req, res) => {
   if (req.query.city === '') {
     res.status(500).send('Sorry, something went wrong');
@@ -24,19 +29,15 @@ app.get('/location', (req, res) => {
   }
   const searchedCity = req.query.city;
   const key = process.env.GEOCODE_API_KEY;
-  // const theDataArrayFromTheLocationJson = require('./data/location.json');
-  // const theDataObjFromJson = theDataArrayFromTheLocationJson[0];
-  // console.log('req.query', req.query);
   const url = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${searchedCity}&format=json`;
   superagent.get(url)
     .then(result => {
-      // console.log(result.body);
-      const theDataObjFromJson = result.body[0];
+      const theDataFromObjLocation = result.body[0];
       const newLocation = new Location(
         searchedCity,
-        theDataObjFromJson.display_name,
-        theDataObjFromJson.lat,
-        theDataObjFromJson.lon
+        theDataFromObjLocation.display_name,
+        theDataFromObjLocation.lat,
+        theDataFromObjLocation.lon
       );
       res.send(newLocation);
     })
@@ -49,46 +50,39 @@ app.get('/location', (req, res) => {
 app.get('/weather', (req, res) => {
   const key = process.env.WEATHER_API_KEY;
   const searchedCity = req.query.search_query;
-  const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchedCity}&key=${key}`;
+  const url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${searchedCity}&key=${key}&days=8`;
   superagent.get(url)
     .then(result => {
-      // console.log(result.body.data);
       const theDataObjFromWeatherJson = result.body.data;
-      // console.log(theDataObjFromWeatherJson);
       const allWeather = theDataObjFromWeatherJson.map((val) => {
         return new Weather(val.weather.description, val.datetime);
-
       });
-      // console.log('I am a note', allWeather);
       res.send(allWeather);
+    })
+    .catch(error => {
+      res.status(500).send('weawtherbit failed');
+      console.log(error.message);
     });
 });
 
-app.get('/trail', (req, res) => {
-  const key = process.env.TRAIL_API_KEY;
+app.get('/parks', (req, res) => {
+  const key = process.env.PARK_API_KEY;
   const searchedCity = req.query.search_query;
-  console.log('city', req);
-  const url = `https://developer.nps.gov/api/v1/parks?parkCode=${searchedCity}&api_key=${key}`;
+  const url = `https://developer.nps.gov/api/v1/parks?q=${searchedCity}&api_key=${key}&limit=5`;
   superagent.get(url)
     .then(result => {
-      console.log('yay', result.body.data);
-      // const theDataObjFromTrailJson = result.body[0];
-      // console.log(theDataObjFromWeatherJson);
-      // const allTrail = theDataObjFromTrailJson.map((val) => {
-      //   return new Trail(val.name, val.datetime);
-
+      const parkInfo = result.body.data.map(obj => {
+        const newParkObj = new Park(obj);
+        console.log('thing', newParkObj);
+        return newParkObj;
+      });
+      res.send(parkInfo);
+    })
+    .catch(error => {
+      res.status(500).send('parks failed');
+      console.log(error.message);
     });
-  // console.log('I am a note', allWeather);
-  // res.send(allTrail);
-  // });
 });
-// const theDataArrayFromTheWeatherJson = require('./data/weather.json');
-// const theDataObjFromWeatherJson = theDataArrayFromTheWeatherJson.data;
-// const allWeather = [];
-// console.log(theDataObjFromWeatherJson);
-// const weather = new Weather(jsonObj.weather.description, jsonObj.datetime);
-// allWeather.push(weather);
-// console.log(allWeather);
 
 // ===== start the server =====//
 
@@ -108,8 +102,10 @@ function Weather(forecast, time) {
   this.time = time;
 }
 
-// function Trail(name, location, trail_url) {
-//   this.name = name;
-//   this.location = location;
-//   this.trail_url = trail_url;
-// }
+function Park(obj) {
+  this.name = obj.name;
+  this.address = `${obj.addresses[0].line1} ${obj.addresses[0].city}, ${obj.addresses[0].stateCode} ${obj.addresses[0].postalCode}`;
+  this.fee = obj.entranceFees[0].cost;
+  this.description = obj.description;
+  this.url = obj.url;
+}
