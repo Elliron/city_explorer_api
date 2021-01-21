@@ -6,15 +6,15 @@ const cors = require('cors');
 const { response } = require('express');
 require('dotenv').config();
 const superagent = require('superagent');
-// const pg = require('pg');
+const pg = require('pg');
 
 // ===== setup the app =====//
 
 const app = express();
 app.use(cors());
-// const DATABASE_URL = process.env.DATABASE_URL;
-// const client = new pg.Client(DATABASE_URL);
-// client.on('error', (error) => console.log(error));
+const DATABASE_URL = process.env.DATABASE_URL;
+const client = new pg.Client(DATABASE_URL);
+client.on('error', (error) => console.log(error));
 
 // ===== other global variables =====//
 
@@ -27,12 +27,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/location', (req, res) => {
-  // const sqlQuery = "SELECT * FROM location";
-  // client.query(sqlQuery)
-  //   .then(result => {
-  //     console.log(result.Potato.rows);
-  //     res.send(result.Potato.rows);
-  //   });
+  const sqlQuery = "SELECT * FROM location";
+  client.query(sqlQuery)
+    .then(result => {
+      console.log(result.Potato.rows);
+      res.send(result.Potato.rows);
+    });
 
 
   if (req.query.city === '') {
@@ -100,7 +100,7 @@ app.get('/parks', (req, res) => {
 
 // ===== start the server =====//
 
-// client.connect();
+client.connect();
 
 app.listen(PORT, () => console.log(`we are up on PORT ${PORT}`));
 
