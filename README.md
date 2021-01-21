@@ -22,6 +22,7 @@
 - Bade
 - Chance Harmon
 - Ron Durphy
+- Nicholas Ryan
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ### Number and name of feature: 1, Repository Set Up
@@ -65,10 +66,10 @@
 -  Start time: 5:20
 -  Finish time: 6:07
 -  Actual time needed to complete: 47 minutes
-## Number and name of feature: 8
--  Estimate of time needed to complete: 
--  Start time: 
--  Finish time: 
--  Actual time needed to complete:
+## Number and name of feature: 9, Parks API
+-  Estimate of time needed to complete: 1 hour
+-  Start time: 5 pm
+-  Finish time: 7:05 pm
+-  Actual time needed to complete: 2 hours and 5 minutes
 
 
