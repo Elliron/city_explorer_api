@@ -71,5 +71,10 @@
 -  Start time: 5 pm
 -  Finish time: 7:05 pm
 -  Actual time needed to complete: 2 hours and 5 minutes
+## Number and name of feature: 10, SQL
+-  Estimate of time needed to complete: 1 hour
+-  Start time: 8 pm
+-  Finish time: 
+-  Actual time needed to complete: 
 
 
