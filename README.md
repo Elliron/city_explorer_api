@@ -23,6 +23,7 @@
 - Chance Harmon
 - Ron Durphy
 - Nicholas Ryan
+- Nicco
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 ### Number and name of feature: 1, Repository Set Up
@@ -73,8 +74,8 @@
 -  Actual time needed to complete: 2 hours and 5 minutes
 ## Number and name of feature: 10, SQL
 -  Estimate of time needed to complete: 1 hour
--  Start time: 8 pm
--  Finish time: 
--  Actual time needed to complete: 
+-  Start time: 8 pm 1/20/21
+-  Finish time: 6:16 pm 1/21/21
+-  Actual time needed to complete: 4
 
 
